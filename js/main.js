@@ -1,3 +1,8 @@
+let net;
+var webcam_runnig=false;
+const webcamElement = document.getElementById('webcam');
+var webcamStream;
+
 function readPath(input) {
 
     if (input.files && input.files[0]) {
@@ -10,54 +15,6 @@ function readPath(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-
-
-let net;
-var webcam_runnig=false;
-
-async function app() {
-  console.log('Loading mobilenet..');
-  document.getElementById("result").innerHTML="Running";
-  document.getElementById("pred_1").innerHTML ="Finding...";
-  document.getElementById("conf_1").style.width=Math.floor(Math.random() * 100).toString()+'%';
- 
-  document.getElementById("pred_2").innerHTML ="Finding...";
-  document.getElementById("conf_2").style.width=Math.floor(Math.random() * 100).toString()+'%';
-  
-  document.getElementById("pred_3").innerHTML ="Finding...";
-  document.getElementById("conf_3").style.width=Math.floor(Math.random() * 100).toString()+'%';
-  
-
-  // Load the model.
-  net = await mobilenet.load();
-  console.log('Sucessfully loaded model');
-
-  // Make a prediction through the model on our image.
-  
-  const imgEl = document.getElementById('cls_img');
-  console.log('sss');
-
-  const result = await net.classify(imgEl);
-  // document.getElementById('header').style.width = 
-  document.getElementById("pred_1").innerHTML =result[0].className;
-  document.getElementById("conf_1").style.width= Math.round(result[0].probability*100).toString()+'%';
- 
-  document.getElementById("pred_2").innerHTML =result[1].className;
-  document.getElementById("conf_2").style.width= Math.round(result[1].probability*100).toString()+'%';
-  
-  document.getElementById("pred_3").innerHTML =result[2].className;
-  document.getElementById("conf_3").style.width= Math.round(result[2].probability*100).toString()+'%';
-  
-  console.log(Math.round(result[0].probability*100))
-  console.log(result);
-  document.getElementById("result").innerHTML="Result";
-
-}
-
-
-const webcamElement = document.getElementById('webcam');
-var webcamStream;
-
 async function setupWebcam() {
   return new Promise((resolve, reject) => {
     const navigatorAny = navigator;
@@ -80,6 +37,46 @@ async function setupWebcam() {
 
   });
 }
+
+
+async function app() {
+  console.log('Loading mobilenet..');
+  document.getElementById("result").innerHTML="Running";
+  document.getElementById("pred_1").innerHTML ="Finding...";
+  document.getElementById("conf_1").style.width=Math.floor(Math.random() * 100).toString()+'%';
+ 
+  document.getElementById("pred_2").innerHTML ="Finding...";
+  document.getElementById("conf_2").style.width=Math.floor(Math.random() * 100).toString()+'%';
+  
+  document.getElementById("pred_3").innerHTML ="Finding...";
+  document.getElementById("conf_3").style.width=Math.floor(Math.random() * 100).toString()+'%';
+  
+
+  // Load the model.
+  net = await mobilenet.load();
+  console.log('Sucessfully loaded model');
+
+  // Make a prediction through the model on our image.
+
+  const imgEl = document.getElementById('cls_img');
+
+  const result = await net.classify(imgEl);
+  // document.getElementById('header').style.width = 
+  document.getElementById("pred_1").innerHTML =result[0].className;
+  document.getElementById("conf_1").style.width= Math.round(result[0].probability*100).toString()+'%';
+ 
+  document.getElementById("pred_2").innerHTML =result[1].className;
+  document.getElementById("conf_2").style.width= Math.round(result[1].probability*100).toString()+'%';
+  
+  document.getElementById("pred_3").innerHTML =result[2].className;
+  document.getElementById("conf_3").style.width= Math.round(result[2].probability*100).toString()+'%';
+  
+  console.log(Math.round(result[0].probability*100))
+  console.log(result);
+  document.getElementById("result").innerHTML="Result";
+
+}
+
 
 async function app_webcam() {
   console.log('Loading mobilenet..');
@@ -110,7 +107,6 @@ async function app_webcam() {
   track.stop();
 }
 
-app();
 $("#inputGroupFile04").change(function(){
 	app();
     readPath(this);
@@ -130,3 +126,5 @@ $("#option1").change(function(){
     webcam_runnig=false;
 	app();
 });
+
+app();
