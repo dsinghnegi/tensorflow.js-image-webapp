@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Load the latest version of TensorFlow.js -->
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <script src="https://unpkg.com/@tensorflow-models/mobilenet"></script>
+    <title>Tensorflow.js Demo</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-info navbar-dark">
+      <a class="navbar-brand bold" href="#">Image classification using Tensorflow.js</a>
+    </nav>
+    <br>
+    <div class="container-fluid ">
+      <div class="media">
+        <!-- Image and video -->
+        <img src="https://images.pexels.com/photos/39629/tiger-tiger-baby-tigerfamile-young-39629.jpeg?cs=srgb&dl=animal-photography-animals-cold-39629.jpg&fm=jpg" crossorigin="anonymous" id="cls_img" class="align-self-start mr-3 img-thumbnail w-50 p-3 ">
+        <video autoplay playsinline muted id="webcam" class="align-self-start mr-3 img-thumbnail w-50 p-3 d-none" width="224" height="224"></video>
+        
+        <div class="card w-50 p-3">
+          <div class="card-body">
+            <div class="media-body">
+              <h2 class="mt-0"><b id="result">Result</b></h2>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Images
+                  </label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Webcam
+                  </label>
+                </div>
+
+
+              <h4 id ="pred_1"></h4>
+              <div class="progress w-75">
+                <div class="progress-bar progress-bar-striped bg-info  progress-bar-animated" role="progressbar" id="conf_1" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              
+              <h4 id ="pred_2"> </h4>
+              <div class="progress w-75">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 30%" id="conf_2" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              
+              <h4 id ="pred_3"></h4>
+              <div class="progress w-75">
+                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 20%" id="conf_3" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              
+              <div class="input-group w-50 py-3">
+              
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile04">
+                  <label class="custom-file-label"  for="inputGroupFile04">Upload Image ...</label>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/main.js" type="text/javascript"></script>    
+
+  </body>
+</html>
